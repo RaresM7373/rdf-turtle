@@ -1,0 +1,74 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://example.com/demo/>
+
+# Country info
+:Country\/GB a :Country ;
+    :iso_3166-1_alpha-2_code 'GB'^^xsd:string ;
+    :iso_3166-1_alpha-3_code 'GBR'^^xsd:string ; 
+    :iso_3166-1_numeric_code '826'^^xsd:string ; 
+    :country_name 'United Kingdom'^^xsd:string ; 
+    skos:prefLabel 'United Kingdom'@en ; 
+    :area_in_sq_km '244820'^^xsd:double ; 
+    :population '66488991'^^xsd:integer ;
+    :capital 'London'^^xsd:string ;
+    :part_of_continent :Continent\/EU ;
+    :uses_currency :Currency\/GBP ;
+    :has_country_neighbour :Country_Neighbour\/GB_neighbour_1 .
+
+# Country neighbours
+:Country_Neighbour\/GB_neighbour_1 a :Country_Neighbour ;
+    :country_neighbour_value :Country\/IE .
+
+# Country languages
+:Country_Language\/GB_lang_1 a :Country_Language ; 
+    :spoken_in :Country\/GB ; 
+    :language_value :Language\/eng ; 
+    :language_variant 'GB'^^xsd:string ; 
+    :rank '1'^^xsd:integer .
+
+:Country_Language\/GB_lang_2 a :Country_Language ; 
+    :spoken_in :Country\/GB ; 
+    :language_value :Language\/cym ; 
+    :language_variant 'GB'^^xsd:string ; 
+    :rank '2'^^xsd:integer .
+
+:Country_Language\/GB_lang_3 a :Country_Language ;
+    :spoken_in :Country\/GB ;
+    :language_value :Language\/gla ; 
+    :rank '3'^^xsd:integer .
+
+# Continent
+:Continent\/EU a :Continent ;
+    :continent_code 'EU'^^xsd:string ;
+    :continent_name 'Europe'^^xsd:string ; 
+    skos:prefLabel 'Europe'@en .
+
+# Currency
+:Currency\/GBP a :Currency ; 
+    :currency_code 'GBP'^^xsd:string ; 
+    :currency_name 'Pound'^^xsd:string ; 
+    skos:prefLabel 'Pound'@en .
+
+# Languages
+:Language\/eng a :Language ; 
+    :iso_639-1_code 'en'^^xsd:string ;
+    :iso_639-2_code 'eng'^^xsd:string ;
+    :iso_639-3_code 'eng'^^xsd:string ; 
+    :language_name 'English'^^xsd:string ; 
+    skos:prefLabel 'English'@en .
+
+:Language\/cym a :Language ; 
+    :iso_639-1_code 'cy'^^xsd:string;
+    :iso_639-2_code 'cym / wel*'^^xsd:string ;
+    :iso_639-3_code 'cym'^^xsd:string ;
+    :language_name 'Welsh'^^xsd:string ;
+    skos:prefLabel 'Welsh'@en .
+
+:Language\/gla a :Language ; 
+    :iso_639-1_code 'gd'^^xsd:string ;
+    :iso_639-2_code 'gla'^^xsd:string ;
+    :iso_639-3_code 'gla'^^xsd:string ; 
+    :language_name 'Gaelic (Scots)'^^xsd:string ; 
+    skos:prefLabel 'Gaelic (Scots)'@en . 
