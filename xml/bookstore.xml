@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="bookstore.xsl" type="text/xsl"?>
+<library>   
+  <book id="B1">
+    <title>The Lord of the Rings</title>
+    <author>J. R. R. Tolkien</author>
+    <genre>Fantasy</genre>
+    <year>1954</year>
+    <borrowedby>Member1</borrowedby>
+  </book>
+  <book id="B2">
+    <title>1984</title>
+    <author>George Orwell</author>
+    <genre>Dystopian</genre>
+    <year>1949</year>
+    <borrowedby>Member3</borrowedby>
+  </book>
+  <book id="B3">
+    <title>To Kill a Mockingbird</title>
+    <author>Harper Lee</author>
+    <genre>Fiction</genre>
+    <year>1960</year>
+    <borrowedby>Member2</borrowedby>
+  </book>
+  <book id="B4">
+    <title>Harry Potter and the Philosopher's Stone</title>
+    <author>J.K. Rowling</author>
+    <genre>Fantasy</genre>
+    <year>1997</year>
+  </book>
+  <book id="B5">
+    <title>Moby Dick</title>
+    <author>Herman Melville</author>
+    <genre>Fiction</genre>
+    <year>1851</year>
+    <borrowedby>Member2</borrowedby>
+  </book>
+  <member id="Member1">
+    <name>John Doe</name>
+    <email>john.doe@example.com</email>
+  </member>
+  <member id="Member2">
+    <name>Jane Smith</name>
+    <email>jane.smith@example.com</email>
+  </member>
+  <member id="Member3">
+    <name>James Johnson</name>
+    <email>james.johnson@example.com</email>
+  </member>
+</library>

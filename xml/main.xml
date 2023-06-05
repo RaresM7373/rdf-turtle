@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookStore>
+  <book>
+    <title lang="en">Everyday Italian</title>
+    <author>Rares Modure</author>
+  </book>
+    <book>
+    <title lang="en">Another Book</title>
+    <author>Some Author</author>
+  </book>
+  <book bestseller="true">
+    <title>Harry Potter</title>
+    <author>L.K. Rowling</author>
+  </book>
+</bookStore>

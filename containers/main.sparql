@@ -1,0 +1,32 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/> 
+
+CREATE GRAPH :Language_Families ;
+CREATE GRAPH :Travel_Bucket_Lists ;
+
+INSERT DATA {
+  GRAPH :Language_Families {
+    :Romans_Languages a rdf:Bag ;
+      rdf:_1 :Langauge\/lat ;
+      rdf:_2 :Langauge\/ita ;
+      rdf:_3 :Langauge\/fr ;
+  }
+
+  GRAPH :Travel_Bucket_Lists {
+    :Travel_Bucket_Lists a rdf:Seq ;
+      rdf:_1 :Country\/NO ; # Norway
+      rdf:_2 :Country\/JP ; # japan
+      rdf:_3 :Country\/US ; # United States of America
+      rdf:_4 :Country\/ZA ; # South Africa
+  }
+}
+
+# List all the members of a given RDF Container. e.g all Romans Languages
+SELECT
+FROM :Romans_Languages
+WHERE {
+  :Romans_Languages ?p ?o .
+  BIND(STR(?p) as ?pStr)
+}

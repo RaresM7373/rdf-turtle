@@ -1,0 +1,4 @@
+{
+  "someAuthorAbsoluteXpath": "/bookstore/book[2]/author",
+  "jkRowlingRelativePath": "//*/book[@bestseller="true"]/author"
+}
