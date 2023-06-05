@@ -1,0 +1,31 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+# Class declarations
+
+:Country a rdfs:Class ;
+	rdfs:label "Country"@en ; # we can also use skos:prefLabel
+	rdfs:comment "Manually declaring the Country class"@en ;
+	rdfs:isDefinedBy <http://example.com/demo/> .
+
+
+:Continent a rdfs:Class ;
+	rdfs:label "Continent"@en ; # we can also use skos:prefLabel
+	rdfs:comment "Manually declaring the Continent class"@en ;
+	rdfs:isDefinedBy <http://example.com/demo/> .
+
+# Property declaration
+
+:part_of_continent a rdf:Property ;
+	rdfs:label "Part of continent"@en ;
+  rdfs:domain :Country ;
+  rdfs:range :Continent .
+	
+:country_name a rdf:Property ;
+	rdfs:label "Name of country"@en ;
+  rdfs:domain :Country ;
+  rdfs:range xsd:string .
+	
+

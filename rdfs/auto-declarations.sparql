@@ -1,0 +1,40 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+WITH :General_Country_Info_Graph
+INSERT {
+  ?t a rdfs:Class ;
+    rdfs:label ?tLabelFull ;
+    rdfs:comment "Transofrmation into RDF Sceham performed automatically"@en ;
+    rdfs:isDefined <http://example.com/demo/> .
+}
+WHERE {
+  ?s ?p ?o ;
+    a ?t .
+
+  BIND(STR(?t) as ?tStr)
+  BIND(STRAFTER(?tStr, "http://example.com/demo/") as ?tLabel)
+  BIND(REPLACE(?tLabel, "[_]", " ") AS ?tLabelClean)
+  BIND(STRLANG(?tLabelClean, "en") as ?tLabelFull)
+}
+
+
+# Transformation query for (inter-resource predicate);
+INSERT {
+  ?p a rdf:Property ;
+    rdfs:domain ?st ;
+    rdfs:range ?ot ;
+    rdfs:label ?pLabelFull ;
+    rdfs:comment "Transofmration int o RDF Schema performed automatically" ;
+    rdfs:isDefinedBy <http://example.com/demo> .
+}
+WHERE {
+  ?s ?p ?o ;
+    a ?st .
+  ?o a ?ot .
+
+  BIND(STRLANG(REPLACE(STRAFTER(STR(?p), "http://example.com/demo/"), "[_]", " "), "end") AS ?pLabelFull)
+  FILTER(?p != rdf:type)
+}
