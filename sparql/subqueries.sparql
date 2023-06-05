@@ -1,0 +1,24 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+# What are the neighbours of the  top 5 of the most populated countriesi n Europe ?
+
+SELECT ?cName1 ?cName2
+WHERE {
+  ?c :country_name ?cName1 ;
+     :has_country_neighbour/:country_neighbour_value/:country_name ?cName2 .
+	{
+    SELECT ?c
+    {
+      ?c :population ?p ;
+          :part_of_continent/:continent_name "Europe" ;
+
+    } 
+    ORDER BY DESC(?p)
+    LIMIT 5
+	}
+}
+ORDER BY ASC(?cName1)
+
+# 

@@ -1,0 +1,51 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+# List the conties in Asie whose naems end in "stan". List the namnes of their primary, as well as any secondary and tertiary language that might be applicable
+# by identifying the language rank. 
+
+SELECT ?cName ?langN ?r
+WHERE {
+  ?c :country_name ?cName ;
+     :part_of_continent/:continent_name "Asia" .
+
+  ?clang :spoken_in ?c ;
+         :language_value/:language_name ?langN ;
+         :rank ?r .
+  
+  FILTER(STRENDS(?cName, "stan"))
+}
+
+ORDER BY ASC(?cName) ASC(?r)
+
+
+
+# Transpose the languagtes in separate columns.
+
+SELECT ?cName ?primaryLang ?secondaryLang ?tertiaryLang
+WHERE {
+	?c :country_name ?cName ;
+		:part_of_continent/:continent_name "Asia" .
+
+	OPTIONAL {
+		?clang1 :spoken_in ?c ;
+			:language_value/:language_name ?primaryLang ;
+			:rank 1 .
+	}
+	OPTIONAL {
+		?clang2 :spoken_in ?c ;
+			:language_value/:language_name ?secondaryLang ;
+			:rank 2 .
+	}
+	OPTIONAL {
+		?clang3 :spoken_in ?c ;
+			:language_value/:language_name ?tertiaryLang ;
+			:rank 3 .
+	}
+
+	FILTER(STRENDS(?cName, "stan"))
+}
+GROUP BY ?cName ?primaryLang ?secondaryLang ?tertiaryLang
+ORDER BY ASC(?cName)
+

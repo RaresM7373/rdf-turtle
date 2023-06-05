@@ -1,0 +1,14 @@
+# What is the total land mass area (to the nearest sq km) of a given continent, e.g. "Asia"?
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+SELECT ?ct (ROUND(SUM(?cArea)) AS ?ctArea)
+WHERE {
+	?c a :Country;
+	  :area_in_sq_km ?cArea ;
+    :part_of_continent ?ct 
+}
+
+GROUP BY ?ct

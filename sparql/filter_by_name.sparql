@@ -1,0 +1,15 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.com/demo/>
+
+# What is the total population of each continent excluding Antartica and Oceania ? 
+
+SELECT ?ctName (SUM(?cPop) as ?ctPop)
+WHERE {
+ ?c :part_of_continent/:continent_name ?ctName ;
+    :population ?cPop .
+
+  FILTER(?ctName NOT IN("Antarctica", "Oceania"))
+}
+
+GROUP BY ?ctName
